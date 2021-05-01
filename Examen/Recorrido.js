@@ -157,18 +157,23 @@ class Recorrido extends THREE.Object3D {
 	};
 
 	update() {
+		// this.getObjectByName("ironman").visible = this.guiControls.ver;
 		this.pacman.visible = this.guiControls.ver;
-		/*var cambio;
-		if (true) {
-			if (this.bola2.rotation.x >= Math.PI * 0.25) cambio = true;
-			if (this.bola2.rotation.x <= -Math.PI * 0.25) cambio = false;
+		/*if (true) {
+			if (this.bola2.rotation.x >= Math.PI * 0.25) gui.cambio_p2 = true;
+			if (this.bola2.rotation.x <= -Math.PI * 0.25) gui.cambio_p2 = false;
 
-			if (cambio) {
-				this.bola2.rotation.z -= this.bola2.rotation.z * 0.15;
+			if (gui.cambio_p2) {
+				this.bola2.rotation.z -= gui.velocidad_p2 * 0.05;
 			} else {
-				this.bola2.rotation.z += this.bola2.rotation.z * 0.15;
+				this.bola2.rotation.z += gui.velocidad_p2 * 0.05;
 			}*/
 		TWEEN.update();
 		
+		// Primero, el escalado
+		// Segundo, la rotación en Z
+		// Después, la rotación en Y
+		// Luego, la rotación en X
+		// Y por último la traslación
 	};
 }
