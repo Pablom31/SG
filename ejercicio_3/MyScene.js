@@ -31,60 +31,15 @@ class MyScene extends THREE.Scene {
     // Por último creamos el modelo.
     // El modelo puede incluir su parte de la interfaz gráfica de usuario. Le pasamos la referencia a 
     // la gui y el texto bajo el que se agruparán los controles de la interfaz que añada el modelo.
+    this.revolucion = new Revolucion(this.gui, "Revolucion");
 
-    this.cubo = new Cubo(this.gui, "Dimensiones del Cubo");
-    this.cono = new Cono(this.gui, "Dimensiones del Cono");
-    this.esfera = new Esfera(this.gui, "Dimensiones de la Esfera");
-    this.cilindro = new Cilindro(this.gui, "Dimensiones del Cilindro");
-    this.torus = new Torus(this.gui, "Dimensiones del Torus");
-    this.icosaedro = new Icosaedro(this.gui, "Configuración del Icosaedro");
-
-    this.add(this.cubo);
-    this.add(this.cono);
-    this.add(this.cilindro);
-    this.add(this.esfera);
-    this.add(this.torus);
-    this.add(this.icosaedro);
+    this.add(this.revolucion);
   }
 
   creaEjes() {
-    this.axis = new THREE.AxesHelper(110);
-    this.axis1 = new THREE.AxesHelper(10);
-    this.axis2 = new THREE.AxesHelper(10);
-    this.axis3 = new THREE.AxesHelper(10);
-    this.axis4 = new THREE.AxesHelper(10);
-    this.axis5 = new THREE.AxesHelper(10);
-    this.axis6 = new THREE.AxesHelper(10);
-    
+    this.axis = new THREE.AxesHelper(80);
+
     this.add(this.axis);
-    this.add(this.axis1);
-    this.add(this.axis2);
-    this.add(this.axis3);
-    this.add(this.axis4);
-    this.add(this.axis5);
-    this.add(this.axis6);
-
-		this.axis.material.linewidth = 3;
-
-    this.axis1.position.y = 40;
-    this.axis1.position.z = 40;
-    
-    this.axis2.position.y = 40;
-    this.axis2.position.x = 40;
-    
-    this.axis3.position.y = -40;
-    this.axis3.position.x = 40;
-    
-    this.axis4.position.y = -40;
-    this.axis4.position.z = 40;
-
-    this.axis5.position.x = 20;
-    this.axis5.position.y = -20;
-    this.axis5.position.z = 20;
-
-    this.axis6.position.x = 20;
-    this.axis6.position.y = 20;
-    this.axis6.position.z = 20;
   }
 
   createCamera() {
@@ -94,7 +49,7 @@ class MyScene extends THREE.Scene {
     //   Los planos de recorte cercano y lejano
     this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     // También se indica dónde se coloca
-    this.camera.position.set(100, 60, 100);
+    this.camera.position.set(8, 4, 8);
     // Y hacia dónde mira
     var look = new THREE.Vector3(0, 0, 0); //Hacia el origen
     this.camera.lookAt(look);
@@ -172,7 +127,7 @@ class MyScene extends THREE.Scene {
     // Si no se le da punto de mira, apuntará al (0,0,0) en coordenadas del mundo
     // En este caso se declara como   this.atributo   para que sea un atributo accesible desde otros métodos.
     this.spotLight = new THREE.SpotLight(0xffffff, this.guiControls.lightIntensity);
-    this.spotLight.position.set(60, 60, 40);
+    this.spotLight.position.set(8, 4, 8);
     this.add(this.spotLight);
   }
 
@@ -237,12 +192,7 @@ class MyScene extends THREE.Scene {
     this.cameraControl.update();
 
     // Se actualiza el resto del modelo
-    this.cubo.update();
-    this.cono.update();
-    this.cilindro.update();
-    this.esfera.update();
-    this.torus.update();
-    this.icosaedro.update();
+    this.revolucion.update();
 
     // Le decimos al renderizador "visualiza la escena que te indico usando la cámara que te estoy pasando"
     this.renderer.render(this, this.getCamera());
